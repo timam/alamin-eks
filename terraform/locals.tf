@@ -73,22 +73,23 @@ locals {
 
 
   tf_eks-worker-node-userdata = {
-    sit = ""
+    sit = <<USERDATA
+#!/bin/bash
+set -o xtrace
+/etc/eks/bootstrap.sh --apiserver-endpoint '${module.eks-cluster.eks_endpoint}' --b64-cluster-ca '${module.eks-cluster.eks_certificate_authority[0].data}' '${module.eks-cluster.cluster_name}'
+USERDATA
     uat = <<USERDATA
 #!/bin/bash
-mkdir -p /var/lib/docker/containers/{status,onboarding,authentication,datamanager,riskmanager,cps,balance,reporting,admin-portal,profile,qr-code,notification,event-stream}
 set -o xtrace
 /etc/eks/bootstrap.sh --apiserver-endpoint '${module.eks-cluster.eks_endpoint}' --b64-cluster-ca '${module.eks-cluster.eks_certificate_authority[0].data}' '${module.eks-cluster.cluster_name}'
 USERDATA
     prod = <<USERDATA
 #!/bin/bash
-mkdir -p /var/lib/docker/containers/{status,onboarding,authentication,datamanager,riskmanager,cps,balance,reporting,admin-portal,profile,qr-code,notification,event-stream}
 set -o xtrace
 /etc/eks/bootstrap.sh --apiserver-endpoint '${module.eks-cluster.eks_endpoint}' --b64-cluster-ca '${module.eks-cluster.eks_certificate_authority[0].data}' '${module.eks-cluster.cluster_name}'
 USERDATA
     lt = <<USERDATA
 #!/bin/bash
-mkdir -p /var/lib/docker/containers/{status,onboarding,authentication,datamanager,riskmanager,cps,balance,reporting,admin-portal,profile,qr-code,notification,event-stream}
 set -o xtrace
 /etc/eks/bootstrap.sh --apiserver-endpoint '${module.eks-cluster.eks_endpoint}' --b64-cluster-ca '${module.eks-cluster.eks_certificate_authority[0].data}' '${module.eks-cluster.cluster_name}'
 USERDATA
