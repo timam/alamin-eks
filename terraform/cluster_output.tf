@@ -58,3 +58,13 @@ fi
 BASH
   }
 }
+
+
+resource "null_resource" "config-map-auth" {
+  provisioner "local-exec" {
+    command = <<BASH
+echo "${local.config_map_aws_auth}" > config-map-auth
+kubectl apply -f config-map-auth
+BASH
+  }
+}
