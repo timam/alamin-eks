@@ -43,10 +43,19 @@ KUBECONFIG
 
 }
 
-output "config_map_aws_auth" {
-  value = local.config_map_aws_auth
-}
+resource "null_resource" "kubeconfig" {
+  provisioner "local-exec" {
+//    command = "${local.config_map_aws_auth} > content.txt"
+    command = <<BASH
 
-output "kubeconfig" {
-  value = local.kubeconfig
+FILE=$HOME/.kube/config
+if test -f "$FILE"; then
+    echo "kubeconfig is ok"
+else
+    mkdir $HOME/.kube/
+    cat "${local.config_map_aws_auth}" >> $HOME/.kube/config
+fi
+
+BASH
+  }
 }
