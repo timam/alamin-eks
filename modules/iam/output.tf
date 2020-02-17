@@ -4,3 +4,7 @@ output "instances-profile" {
 output "role-name" {
   value = aws_iam_role.iam-role.name
 }
+
+output "role-arn" {
+  value = aws_iam_role.iam-role.arn
+}
