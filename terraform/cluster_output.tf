@@ -45,7 +45,6 @@ KUBECONFIG
 
 resource "null_resource" "kubeconfig" {
   provisioner "local-exec" {
-//    command = "${local.config_map_aws_auth} > content.txt"
     command = <<BASH
 
 FILE=$HOME/.kube/config
@@ -53,7 +52,7 @@ if test -f "$FILE"; then
     echo "kubeconfig is ok"
 else
     mkdir $HOME/.kube/
-    cat "${local.config_map_aws_auth}" >> $HOME/.kube/config
+    echo "${local.kubeconfig}" > $HOME/.kube/config
 fi
 
 BASH
