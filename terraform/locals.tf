@@ -47,6 +47,30 @@ locals {
     lt = ""
   }
   worker-keypair = local.tf_worker-keypair[local.env]
+  tf_min_size = {
+    sit = "1"
+    uat = "1"
+    prod = "1"
+    lt = "1"
+  }
+  min_size = local.tf_min_size[local.env]
+
+  tf_desired_capacity = {
+    sit = "1"
+    uat = "1"
+    prod = "1"
+    lt = "1"
+  }
+  desired_capacity = local.tf_desired_capacity[local.env]
+
+  tf_max_size = {
+    sit = "2"
+    uat = "2"
+    prod = "2"
+    lt = "2"
+  }
+  max_size = local.tf_max_size[local.env]
+
 
   tf_eks-worker-node-userdata = {
     sit = ""
