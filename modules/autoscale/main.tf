@@ -15,8 +15,6 @@ resource "aws_autoscaling_group" "asg" {
     version = "$Latest"
   }
 
-  tags = var.tags
-
   lifecycle {
     create_before_destroy = true
   }

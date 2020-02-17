@@ -12,7 +12,3 @@ variable "vpc_zone_identifier" {
   type = list(string)
 }
 variable "launch_template" {}
-
-variable "tags" {
-  type = list(string)
-}

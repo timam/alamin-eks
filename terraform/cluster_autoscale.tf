@@ -6,6 +6,5 @@ module "eks-worker-asg" {
   min_size = local.min_size
   name = "${local.env}-${local.project}-eks-worker-asg"
   vpc_zone_identifier = [data.aws_subnet.private-subnet-1b.id, data.aws_subnet.private-subnet-1c.id]
-  tags = merge(map("Name",join("-",[local.env,local.project,"eks-worker-asg"])),map("ResourceType","asg"),local.common_tags)
 
 }
