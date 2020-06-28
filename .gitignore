@@ -27,3 +27,6 @@ Session.vim
 
 # Crash log files
 crash.log
+
+#kub config map
+config-map-auth
